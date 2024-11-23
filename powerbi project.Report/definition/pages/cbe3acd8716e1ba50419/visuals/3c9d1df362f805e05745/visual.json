@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "3c9d1df362f805e05745",
+  "position": {
+    "x": 347.47200542925009,
+    "y": 71.479955402588587,
+    "z": 0,
+    "height": 555.95520868680012,
+    "width": 700.90067380871585
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "autoSelectVisualType": true,
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "LoanData"
+                    }
+                  },
+                  "Property": "GivenName"
+                }
+              },
+              "queryRef": "LoanData.GivenName",
+              "nativeQueryRef": "GivenName"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "LoanData"
+                        }
+                      },
+                      "Property": "Term"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(LoanData.Term)",
+              "nativeQueryRef": "Sum of Term"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "LoanData"
+                      }
+                    },
+                    "Property": "Term"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

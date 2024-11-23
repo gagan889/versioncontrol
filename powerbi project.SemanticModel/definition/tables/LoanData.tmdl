@@ -1,0 +1,124 @@
+table LoanData
+	lineageTag: 4e703a16-6865-4a45-8c29-2817dcdbdb25
+
+	column Title
+		dataType: string
+		lineageTag: 43b0249c-bfb1-46cd-a594-064f84350bc7
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column GivenName
+		dataType: string
+		lineageTag: e1b2c06f-829c-4da6-8f69-d1c9e1cc5845
+		summarizeBy: none
+		sourceColumn: GivenName
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmailAddress
+		dataType: string
+		lineageTag: 70f6d494-4241-4f91-8778-43dcd366742c
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCType
+		dataType: string
+		lineageTag: 08635d44-7cfc-4177-8602-86e89cf9055a
+		summarizeBy: none
+		sourceColumn: CCType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a5629dc-5b44-42b7-9702-63eb1987bb44
+		summarizeBy: sum
+		sourceColumn: CCNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 807af004-5cc0-461f-bcd0-a6e10f1ba51b
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Occupation
+		dataType: string
+		lineageTag: 32cf99d3-c903-4711-a5bf-eda8328a45b4
+		summarizeBy: none
+		sourceColumn: Occupation
+
+		annotation SummarizationSetBy = Automatic
+
+	column TelephoneNumber
+		dataType: string
+		lineageTag: 8bd5da8e-7ffd-497d-ab00-dcee352edcdd
+		summarizeBy: none
+		sourceColumn: TelephoneNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: bc62d56e-0e9b-4b24-b6ea-b16133ce361b
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoanAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ebe91a8-c19b-4204-bfc0-3b41d9d0e980
+		summarizeBy: sum
+		sourceColumn: LoanAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Term
+		dataType: int64
+		formatString: 0
+		lineageTag: fc89892d-4176-4712-b073-b0a626f40406
+		summarizeBy: sum
+		sourceColumn: Term
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearlyIncome
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fabd0ae-de5c-4990-a64d-ef947d635936
+		summarizeBy: sum
+		sourceColumn: YearlyIncome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 452ce501-3066-4081-8289-25677a49aa7d
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LoanData = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Gagan Deep Singh\OneDrive\Desktop\git\versioncontrol\LoanData.csv"),[Delimiter=",", Columns=13, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Title", type text}, {"GivenName", type text}, {"EmailAddress", type text}, {"CCType", type text}, {"CCNumber", Int64.Type}, {"Age", Int64.Type}, {"Occupation", type text}, {"TelephoneNumber", type text}, {"City", type text}, {"LoanAmount", Int64.Type}, {"Term", Int64.Type}, {"YearlyIncome", Int64.Type}, {"Status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

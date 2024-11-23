@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "powerbi project"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c3ee64c9-970c-42d1-b0e7-387ad9ef1afe"
+  }
+}
